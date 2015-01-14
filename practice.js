@@ -4,18 +4,22 @@ var outer = function(){
   var name = 'Tyler';
   return function(){
     return 'The original name was ' + name;
-  }
-}
+  };
+};
 //Above you're given a function that returns another function which has a closure over the name variable.
 //Invoke outer saving the return value into another variable called 'inner'.
 
   //Code Here
+var inner = outer();
+
+
+
 
 //Once you do that, invoke inner.
 
   //Code Here
 
-
+inner();
 
 //Next problem
 
@@ -34,7 +38,9 @@ var callFriend = function(){
 
   //Code Here
 
+var call = callFriend();
 
+call('435-215-9248');
 
 //Next Problem
 
@@ -45,6 +51,17 @@ var callFriend = function(){
 */
 
   //Code Here
+
+var makeCounter = function(){
+  var counter = 0;
+  return function(){
+    return counter += 1;
+  };
+
+};
+
+
+
   var count = makeCounter();
   count() // 1
   count() // 2
@@ -63,6 +80,32 @@ var callFriend = function(){
   Once completed, add a second arguments that allows the function to be invoked N number of times.
   After the function has been called N number of times, console.log('STAHHP');
 */
+
+var outerFn = function(fn, arg) {
+  ifExecuted = false;
+  return function() {
+    if (!ifExecuted || arg > 5){
+      fn();
+      arg ++;
+      if (arg === 5) {
+        console.log('STAHHP');
+        ifExecuted = true;
+      };
+    }
+    
+  };
+};
+
+
+
+var execute = outerFn(function(){
+  console.log('working');
+}, 0);
+
+
+
+execute();
+
 
 
 
